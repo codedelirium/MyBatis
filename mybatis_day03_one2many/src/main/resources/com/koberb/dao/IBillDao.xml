@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.koberb.dao.IBillDao">
+    <!--一对一-->
+    <resultMap id="BillUserMap" type="bill">
+        <id property="id" column="id"></id>
+        <result property="user_id" column="user_id"></result>
+        <result property="status" column="status"></result>
+        <result property="time" column="time"></result>
+        <result property="total" column="total"></result>
+        <association property="user" column="user" javaType="user">
+            <id property="id" column="uid"></id>
+            <result property="name" column="name"></result>
+            <result property="type" column="type"></result>
+        </association>
+    </resultMap>
+
+    <!--配置查询所有-->
+    <select id="findAll" resultMap="BillUserMap">
+        select b.*,u.id as uid,u.type,u.name from tb_bill b , tb_user u where u.id = b.user_id;
+    </select>
+
+
+    <!--配置查询所有账单，且查询所有账单对应的user-->
+    <select id="findAllBU" resultType="billuser">
+        select b.*,u.name as username,u.type as usertype from tb_bill b , tb_user u where u.id = b.user_id;
+    </select>
+</mapper>

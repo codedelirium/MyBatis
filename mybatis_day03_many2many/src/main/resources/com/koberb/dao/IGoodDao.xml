@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.koberb.dao.IGoodDao">
+    <resultMap id="GoodBillMap" type="good">
+        <id property="id" column="id"></id>
+        <result property="name" column="name"></result>
+        <result property="price" column="price"></result>
+
+        <collection property="goods" ofType="good">
+            <id property="id" column="bid"></id>
+            <result property="amount" column="user_id"></result>
+            <result property="total" column="total"></result>
+            <result property="status" column="status"></result>
+            <result property="time" column="time"></result>
+        </collection>
+    </resultMap>
+    <select id="findAll" resultMap="GoodBillMap">
+
+    </select>
+</mapper>

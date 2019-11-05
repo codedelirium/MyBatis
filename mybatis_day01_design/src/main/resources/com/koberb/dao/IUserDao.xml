@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mapper namespace="com.koberb.dao.IUserDao">
+    <!--配置查询所有-->
+    <select id="findAll" resultType="com.koberb.pojo.User">
+        select * from tb_user
+    </select>
+</mapper>
